@@ -104,6 +104,51 @@ header {
     background-color: transparent;
 }
 
+
+/* Styles pour le bouton de contrôle du son */
+#soundControl {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#toggleSound {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Positionne le lecteur audio hors de la vue par défaut */
+#audioContainer {
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 600px) {
+    #tree_img img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 /* Responsive Styling */
 @media screen and (max-width: 600px) {
     #tree_img img {
