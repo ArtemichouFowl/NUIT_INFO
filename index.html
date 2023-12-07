@@ -1,14 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rythm Game</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+
+        .carré {
+            position: relative;
+            width: 40%;
+            /* Ajustez la taille du carré selon vos besoins */
+            height: 90%;
+            /* Ajustez la taille du carré selon vos besoins */
+            background-color: #3498db;
+            /* Couleur du fond du carré */
+            text-align: center;
+            line-height: 200px;
+            /* Utilisé pour centrer le texte verticalement */
+            color: #fff;
+            /* Couleur du texte à l'intérieur du carré */
+            overflow: hidden;
+            display: flex;
+        }
+
+        .section {
+            flex: 1;
+            position: relative;
+        }
+
+        .golden {
+            width: 100%;
+            height: 40px;
+            background-color: #f1c40f;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .rectangle {
+            height: 50px;
+            position: absolute;
+            background-color: #e74c3c;
+            /* Couleur initiale du rectangle */
+            transition: background-color 0.5s ease;
+            /* Ajout d'une transition pour un changement en douceur */
+        }
+
+        .rectangle.in-golden {
+            background-color: #2ecc71;
+            /* Nouvelle couleur pour le rectangle dans la zone dorée */
+        }
+    </style>
 </head>
 
 <body>
+    <div class="carré" id="game">
+        <div class="section" id="section1"></div>
+        <div class="section" id="section2"></div>
+        <div class="section" id="section3"></div>
+        <div class="golden" id="key"></div>
+    </div>
 
+    <script src="main.js"></script>
 </body>
 
 </html>
