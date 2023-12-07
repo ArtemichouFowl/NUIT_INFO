@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="script/pop_up_prejuge.js"></script>
 
     <link rel="stylesheet" href="style/style.css" />
     <title>Tree Clicker</title>
@@ -28,9 +27,18 @@
 
     <div class="modal" id="modal">
         <div class="modal-back"></div>
-        <div class="modal-container"> Modale ici<br /> <a href="#" id="modal-close">[fermer]</a> </div>
+        <div class="modal-container"> 
+            <h1>Cette affirmation est-elle vraie ?</h1> 
+            <p id="question" >question</p>
+            <button id="button_true_answer">Vrai</button>
+            <button id="button_false_answer">Faux</button>
+
+            <a href="#" id="modal-close">[fermer]</a> 
+        </div>
     </div>
 
 </body>
 <script src="script/main.js"></script>
+<script defer src="script/pop_up_prejuge.js"></script>
+
 </html>
