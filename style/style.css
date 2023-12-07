@@ -73,12 +73,6 @@ header {
 }
 
 /* Modal Styling */
-
-
-.modal {
-    display: none;
-}
-
 .modal-back {
     position: fixed;
     top: 0;
