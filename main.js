@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let score = 0;
     let keyPressedMap = {
-        'a': false,
-        'z': false,
-        'e': false
+        'f': false,
+        'g': false,
+        'h': false
     };
     let inGoldenZone = false;
 
@@ -55,22 +55,21 @@ document.addEventListener('DOMContentLoaded', function () {
         animation.onfinish = function () {
             animationRunning = false;
             rectangle.remove();
-            checkGameOver();
         };
 
         function checkCollision() {
             if (isRectangleInGolden(rectangle)) {
                 inGoldenZone = true;
 
-                if (keyPressedMap['a'] && randomSectionIndex === 0) {
-                    handleKeyPress('a');
+                if (keyPressedMap['f'] && randomSectionIndex === 0) {
+                    handleKeyPress('f');
                     rectangle.classList.add('in-golden');
-                } else if (keyPressedMap['z'] && randomSectionIndex === 1) {
+                } else if (keyPressedMap['g'] && randomSectionIndex === 1) {
                     rectangle.classList.add('in-golden');
-                    handleKeyPress('z');
-                } else if (keyPressedMap['e'] && randomSectionIndex === 2) {
+                    handleKeyPress('g');
+                } else if (keyPressedMap['h'] && randomSectionIndex === 2) {
                     rectangle.classList.add('in-golden');
-                    handleKeyPress('e');
+                    handleKeyPress('h');
                 }
             } else {
                 rectangle.classList.remove('in-golden');
@@ -99,7 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function handleKeyPress(key) {
         if (inGoldenZone) {
-            console.log(`Rectangle dans la zone dorée et touche ${key} pressée !`);
             score++;
             scoreElement.textContent = `Score: ${score}`;
         }

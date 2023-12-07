@@ -11,59 +11,55 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: black;
         }
 
         .carré {
             position: relative;
-            width: 40%;
-            /* Ajustez la taille du carré selon vos besoins */
-            height: 90%;
-            /* Ajustez la taille du carré selon vos besoins */
-            background-color: #3498db;
-            /* Couleur du fond du carré */
+            width: 500px;
+            height: 100%;
             text-align: center;
             line-height: 200px;
-            /* Utilisé pour centrer le texte verticalement */
             color: #fff;
-            /* Couleur du texte à l'intérieur du carré */
             overflow: hidden;
             display: flex;
+            z-index: 1;
         }
 
         .score {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 20%;
+            left: 7%;
             color: white;
-            font-size: 18px;
+            font-size: 50px;
+            font-family: 'Press Start 2P', cursive;
         }
 
         .section {
             flex: 1;
             position: relative;
+            display: flex;
         }
 
         .golden {
             width: 100%;
             height: 100px;
-            background-color: #f1c40f;
             position: absolute;
             bottom: 0;
         }
 
         .rectangle {
-            height: 50px;
             position: absolute;
-            background-color: #e74c3c;
-            /* Couleur initiale du rectangle */
             transition: background-color 0.5s ease;
-            /* Ajout d'une transition pour un changement en douceur */
+            background-image: url("apple.png");
+            background-repeat: no-repeat;
+            height: 100px;
+            background-size: 50% auto;
+            background-position: center top;
         }
 
         .rectangle.in-golden {
-            background-color: #2ecc71;
-            /* Nouvelle couleur pour le rectangle dans la zone dorée */
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .popup {
@@ -79,15 +75,48 @@
             text-align: center;
             z-index: 1000;
         }
+
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            transform: translateX(-50%) translateY(-50%);
+            background-size: contain;
+            /* Modifier ici */
+            transition: 1s opacity;
+        }
+
+
+        img {
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10%;
+        }
     </style>
+    <video loop autoplay muted>
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
 </head>
 
 <body>
+    <div class="score" id="score">Score: 0</div>
     <div class="carré" id="game">
-        <div class="score" id="score">Score: 0</div>
-        <div class="section" id="section1"></div>
-        <div class="section" id="section2"></div>
-        <div class="section" id="section3"></div>
+        <div class="section" id="section1">
+            <img src="h.png" alt="">
+        </div>
+        <div class="section" id="section2">
+            <img src="g.png" alt="">
+        </div>
+        <div class="section" id="section3">
+            <img src="f.png" alt="">
+        </div>
         <div class="golden" id="key">
             <div class="perdu" id="perdu"></div>
         </div>
