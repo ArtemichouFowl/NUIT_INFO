@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const golden = document.getElementById('key');
     const sections = document.querySelectorAll('.section');
 
+    let hasSpaceBeenPressed = false;
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === ' ' && !hasSpaceBeenPressed) {
+            hasSpaceBeenPressed = true;
+        }
+    });
+
     function createRectangle() {
         const rectangle = document.createElement('div');
         rectangle.classList.add('rectangle');
@@ -13,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let animationRunning = true;
 
-        // Anime le rectangle pour qu'il tombe
         const animation = rectangle.animate([
             { top: '-50px' },
             { top: '100%' }
@@ -25,17 +32,28 @@ document.addEventListener('DOMContentLoaded', function () {
         animation.onfinish = function () {
             animationRunning = false;
             rectangle.remove();
+
+            hasSpaceBeenPressed = false;
         };
 
         function checkCollision() {
             if (isRectangleInGolden(rectangle)) {
-                console.log('Rectangle dans la zone dorée !');
                 rectangle.classList.add('in-golden');
-                animationRunning = false; // Arrête de vérifier après la première collision
+                if (hasSpaceBeenPressed) {
+                    console.log('Rectangle dans la zone dorée et touche Espace pressée !');
+                    rectangle.style.backgroundColor = '#2ecc71';
+                } else {
+                    rectangle.style.backgroundColor = '#e74c3c';
+                }
             }
 
             if (animationRunning) {
                 requestAnimationFrame(checkCollision);
+            } else {
+                rectangle.classList.remove('in-golden');
+                if (!hasSpaceBeenPressed) {
+                    rectangle.style.backgroundColor = '#e74c3c';
+                }
             }
         }
 
