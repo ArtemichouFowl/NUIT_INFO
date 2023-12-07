@@ -11,35 +11,46 @@ document.addEventListener('DOMContentLoaded', function () {
         rectangle.style.left = randomSection.offsetLeft + 'px';
         game.appendChild(rectangle);
 
+        let animationRunning = true;
+
         // Anime le rectangle pour qu'il tombe
         const animation = rectangle.animate([
-            { top: '-20px' },
-            { top: 'calc(100% + 20px)' }
+            { top: '-50px' },
+            { top: '100%' }
         ], {
             duration: 3000,
             easing: 'linear'
         });
 
         animation.onfinish = function () {
-            const rectangleRect = rectangle.getBoundingClientRect();
-            console.log(`Position du rectangle: left=${rectangleRect.left}, top=${rectangleRect.top}`);
-
-            if (isRectangleInGolden(rectangleRect)) {
-                console.log('Rectangle dans la zone dorée !');
-                rectangle.classList.add('in-golden');
-            }
+            animationRunning = false;
             rectangle.remove();
         };
+
+        function checkCollision() {
+            if (isRectangleInGolden(rectangle)) {
+                console.log('Rectangle dans la zone dorée !');
+                rectangle.classList.add('in-golden');
+                animationRunning = false; // Arrête de vérifier après la première collision
+            }
+
+            if (animationRunning) {
+                requestAnimationFrame(checkCollision);
+            }
+        }
+
+        checkCollision();
     }
 
-    function isRectangleInGolden(rectangleRect) {
+    function isRectangleInGolden(rectangle) {
+        const rect = rectangle.getBoundingClientRect();
         const goldenRect = golden.getBoundingClientRect();
 
         return (
-            rectangleRect.left < goldenRect.right &&
-            rectangleRect.right > goldenRect.left &&
-            rectangleRect.top < goldenRect.bottom &&
-            rectangleRect.bottom > goldenRect.top
+            rect.bottom > goldenRect.top &&
+            rect.top < goldenRect.bottom &&
+            rect.right > goldenRect.left &&
+            rect.left < goldenRect.right
         );
     }
 
