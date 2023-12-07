@@ -37,23 +37,24 @@ let questionJSONArr = [{
 updateUpgradeTag()
 updateScoreTag();
 
+//click sur le tree -> augmente le score
 treeImage.addEventListener("click", function(){
     increaseScore();
 });
 
-upgradeTag.addEventListener("click", function(){
-    upgradeTree();
-});
-
+//augmente le score par rapport a l'etat de l'arbre
 function increaseScore(){
     score+=addValue[treeState]
     updateScoreTag();
 }
 
+//fausse reponse a l'upgrade
 function wrongAnswer(){
-    score-=addValue[treeState]
+    score-=upgradePrices[treeState]
+    updateScoreTag()
 }
 
+//bonne reponse a l'upgrade
 function upgradeTree(){
     if(treeState<finalState && score >= upgradePrices[treeState]){
         score-=upgradePrices[treeState]
@@ -63,14 +64,24 @@ function upgradeTree(){
     updateUpgradeTag()
 }
 
+//met a jour le score
 function updateScoreTag(){
     scoreTag.innerHTML = score;
 }
 
+//met a jour le bouton d'amélioration
 function updateUpgradeTag(){
     if(treeState<finalState){
         upgradeTag.innerHTML = `Faire pousser l'arbre : ${upgradePrices[treeState]}`
     } else {
         upgradeTag.innerHTML = "Vous avez terminé !"
     }
+}
+
+function isUpgradable(){
+    return(score>=upgradePrices[treeState])
+}
+
+function getQuestion(){
+    return questionJSONArr[treeState]
 }
