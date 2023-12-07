@@ -2,12 +2,32 @@ document.addEventListener('DOMContentLoaded', function () {
     const game = document.getElementById('game');
     const golden = document.getElementById('key');
     const sections = document.querySelectorAll('.section');
+    const scoreElement = document.getElementById('score');
+    const popupElement = document.getElementById('popup');
+    const perduElement = document.getElementById('perdu');
 
-    let hasSpaceBeenPressed = false;
+    let score = 0;
+    let keyPressedMap = {
+        'a': false,
+        'z': false,
+        'e': false
+    };
+    let inGoldenZone = false;
 
     document.addEventListener('keydown', function (event) {
-        if (event.key === ' ' && !hasSpaceBeenPressed) {
-            hasSpaceBeenPressed = true;
+        const key = event.key.toLowerCase();
+        if (keyPressedMap[key] === undefined) return;
+
+        if (!keyPressedMap[key]) {
+            keyPressedMap[key] = true;
+            handleKeyPress(key);
+        }
+    });
+
+    document.addEventListener('keyup', function (event) {
+        const key = event.key.toLowerCase();
+        if (keyPressedMap[key] !== undefined) {
+            keyPressedMap[key] = false;
         }
     });
 
@@ -15,8 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const rectangle = document.createElement('div');
         rectangle.classList.add('rectangle');
         rectangle.style.width = sections[0].clientWidth + 'px';
-        const randomSection = sections[Math.floor(Math.random() * sections.length)];
-        rectangle.style.left = randomSection.offsetLeft + 'px';
+
+        const randomSectionIndex = Math.floor(Math.random() * sections.length);
+        const selectedSection = sections[randomSectionIndex];
+        rectangle.style.left = selectedSection.offsetLeft + 'px';
+
         game.appendChild(rectangle);
 
         let animationRunning = true;
@@ -32,28 +55,30 @@ document.addEventListener('DOMContentLoaded', function () {
         animation.onfinish = function () {
             animationRunning = false;
             rectangle.remove();
-
-            hasSpaceBeenPressed = false;
+            checkGameOver();
         };
 
         function checkCollision() {
             if (isRectangleInGolden(rectangle)) {
-                rectangle.classList.add('in-golden');
-                if (hasSpaceBeenPressed) {
-                    console.log('Rectangle dans la zone dorée et touche Espace pressée !');
-                    rectangle.style.backgroundColor = '#2ecc71';
-                } else {
-                    rectangle.style.backgroundColor = '#e74c3c';
+                inGoldenZone = true;
+
+                if (keyPressedMap['a'] && randomSectionIndex === 0) {
+                    handleKeyPress('a');
+                    rectangle.classList.add('in-golden');
+                } else if (keyPressedMap['z'] && randomSectionIndex === 1) {
+                    rectangle.classList.add('in-golden');
+                    handleKeyPress('z');
+                } else if (keyPressedMap['e'] && randomSectionIndex === 2) {
+                    rectangle.classList.add('in-golden');
+                    handleKeyPress('e');
                 }
+            } else {
+                rectangle.classList.remove('in-golden');
+                inGoldenZone = false;
             }
 
             if (animationRunning) {
                 requestAnimationFrame(checkCollision);
-            } else {
-                rectangle.classList.remove('in-golden');
-                if (!hasSpaceBeenPressed) {
-                    rectangle.style.backgroundColor = '#e74c3c';
-                }
             }
         }
 
@@ -70,6 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
             rect.right > goldenRect.left &&
             rect.left < goldenRect.right
         );
+    }
+
+    function handleKeyPress(key) {
+        if (inGoldenZone) {
+            console.log(`Rectangle dans la zone dorée et touche ${key} pressée !`);
+            score++;
+            scoreElement.textContent = `Score: ${score}`;
+        }
+    }
+
+    function showPopup() {
+        popupElement.style.display = 'block';
     }
 
     setInterval(createRectangle, 2000);
