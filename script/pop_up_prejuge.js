@@ -3,8 +3,11 @@ let upgrade_button = document.getElementById('upgrade_button')
 upgrade_button.addEventListener('click', handleUpgradeButton);
 
 function handleUpgradeButton() {
-    createQuestionModal()
-    updateModalQuestion()
+    if(isUpgradable()){
+        createQuestionModal()
+        updateModalQuestion()
+    }
+
 }
 
 

@@ -54,8 +54,9 @@ function increaseScore() {
 
 //fausse reponse a l'upgrade
 function wrongAnswer() {
-    score -= addValue[treeState]
+    console.log(score)
     score -= upgradePrices[treeState]
+    console.log(score)
     updateScoreTag()
 }
 
