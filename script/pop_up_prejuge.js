@@ -78,3 +78,6 @@ document.getElementById('modal-close').addEventListener('click', function(e) {
 document.getElementById('modal').style.display = 'none'
 })
 
+document.getElementById('modal-close_reponse').addEventListener('click', function(e) {
+    document.getElementById('modal_reponse').style.display = 'none'
+    })
