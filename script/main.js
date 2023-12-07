@@ -54,10 +54,13 @@ function increaseScore() {
     updateScoreTag();
 }
 
+//fausse reponse a l'upgrade
 function wrongAnswer(){
-    score-=addValue[treeState]
+    score-=upgradePrices[treeState]
+    updateScoreTag()
 }
 
+//bonne reponse a l'upgrade
 function upgradeTree(){
     if(treeState<finalState && score >= upgradePrices[treeState]){
         score-=upgradePrices[treeState]
