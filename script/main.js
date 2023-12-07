@@ -3,8 +3,8 @@ let score = 0 // score de feuille
 let treeState = 0 // etat de l'arbre
 let finalState = 5 // dernier etat
 
-let addValue = [1,10,100,1000,10000,100000] // valeurs ajoutée à l'arbre a chaque clic
-let upgradePrices = [50,500,5000,50000,500000,5000000] // valeurs pour améliorer l'arbre
+let addValue = [1, 10, 100, 1000, 10000, 100000] // valeurs ajoutée à l'arbre a chaque clic
+let upgradePrices = [50, 500, 5000, 50000, 500000, 5000000] // valeurs pour améliorer l'arbre
 
 let scoreTag = document.getElementById("score_number") // text score
 let upgradeTag = document.getElementById("upgrade_button") // text faire pousser
@@ -37,16 +37,20 @@ let questionJSONArr = [{
 updateUpgradeTag()
 updateScoreTag();
 
-treeImage.addEventListener("click", function(){
+
+document.addEventListener('DOMContentLoaded', startFallingLeaves);
+
+treeImage.addEventListener("click", function () {
     increaseScore();
+    playAudio();
 });
 
-upgradeTag.addEventListener("click", function(){
+upgradeTag.addEventListener("click", function () {
     upgradeTree();
 });
 
-function increaseScore(){
-    score+=addValue[treeState]
+function increaseScore() {
+    score += addValue[treeState]
     updateScoreTag();
 }
 
@@ -63,14 +67,39 @@ function upgradeTree(){
     updateUpgradeTag()
 }
 
-function updateScoreTag(){
+function updateScoreTag() {
     scoreTag.innerHTML = score;
 }
 
-function updateUpgradeTag(){
-    if(treeState<finalState){
+function updateUpgradeTag() {
+    if (treeState < finalState) {
         upgradeTag.innerHTML = `Faire pousser l'arbre : ${upgradePrices[treeState]}`
     } else {
         upgradeTag.innerHTML = "Vous avez terminé !"
     }
 }
+
+function playAudio() {
+    let audio = document.getElementById("clickMusic")
+    audio.play()
+}
+
+
+
+function createFallingLeaf() {
+    const leaf = document.createElement('div');
+    leaf.className = 'falling-leaf';
+    document.body.appendChild(leaf);
+
+    const startPosition = Math.random() * window.innerWidth;
+    leaf.style.left = startPosition + 'px';
+
+    setTimeout(() => {
+        leaf.remove();
+    }, 8000); // Adjust the time based on your preference
+}
+
+function startFallingLeaves() {
+    setInterval(createFallingLeaf, 1000); // Adjust the interval based on your preference
+}
+
