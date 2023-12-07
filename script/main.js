@@ -38,8 +38,6 @@ updateUpgradeTag()
 updateScoreTag();
 
 
-document.addEventListener('DOMContentLoaded', startFallingLeaves);
-
 //click sur le tree -> augmente le score
 treeImage.addEventListener("click", function () {
     increaseScore();
@@ -96,27 +94,11 @@ function getQuestion() {
 
 
 
+//Function pour jouer l'audio lors du clique sur l'arbre
 function playAudio() {
     let audio = document.getElementById("clickMusic")
     audio.play()
 }
 
 
-
-function createFallingLeaf() {
-    const leaf = document.createElement('div');
-    leaf.className = 'falling-leaf';
-    document.body.appendChild(leaf);
-
-    const startPosition = Math.random() * window.innerWidth;
-    leaf.style.left = startPosition + 'px';
-
-    setTimeout(() => {
-        leaf.remove();
-    }, 8000); // Adjust the time based on your preference
-}
-
-function startFallingLeaves() {
-    setInterval(createFallingLeaf, 1000); // Adjust the interval based on your preference
-}
 
