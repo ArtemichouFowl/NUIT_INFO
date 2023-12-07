@@ -9,3 +9,4 @@ upgrade_click.addEventListener('click', function(e) {
 document.getElementById('modal-close').addEventListener('click', function(e) {
 document.getElementById('modal').style.display = 'none'
 })
+
