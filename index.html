@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script/main.js"></script>
+    <script defer src="script/pop_up_prejuge.js"></script>
+
     <script src="script/audio.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -21,34 +22,48 @@
     </div>
 
     <div id="tree_tab">
-        <div id="tree_img"><img src="style/img/arbre.png"></div>
-    </div>
-
-
-    <div>
-        <button id="upgrade_click">Améliorer</button>
-    </div>
-
-    <div id="popup">
-        <div class="modal" id="modal">
-            <div class="modal-back"></div>
-            <div class="modal-container"> Modale ici<br /> <a href="#" id="modal-close">[fermer]</a> </div>
+        <div id="tree_img"><img src="style/img/arbre.png">
         </div>
-    </div>
+
+
+        <div>
+            <button id="upgrade_button">Améliorer</button>
+        </div>
+
+        <div id="popup">
+            <div class="modal" id="modal">
+                <div class="modal-back"></div>
+                <div class="modal-container"> Modale ici<br /> <a href="#" id="modal-close">[fermer]</a> </div>
+            </div>
+        </div>
 
 
 
-    <!-- Musique de fond -->
-    <audio id="backgroundMusic" autoplay loop>
-        <source src="style/sound/lofi-tree.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
+        <!-- Musique de fond -->
+        <audio id="backgroundMusic" autoplay loop>
+            <source src="style/sound/lofi-tree.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
 
-    <!-- Bouton pour activer/désactiver le son -->
-    <div id="soundControl">
-        <button id="toggleSound"><i class="fa-solid fa-volume-high"></i></button>
-    </div>
+        <!-- Bouton pour activer/désactiver le son -->
+        <div id="soundControl">
+            <button id="toggleSound"><i class="fa-solid fa-volume-high"></i></button>
+        </div>
+
+
+
+        <!-- Musique de fond -->
+        <audio id="backgroundMusic" autoplay loop>
+            <source src="style/sound/lofi-tree.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+
+        <!-- Bouton pour activer/désactiver le son -->
+        <div id="soundControl">
+            <button id="toggleSound"><i class="fa-solid fa-volume-high"></i></button>
+        </div>
 
 </body>
+<script src="script/main.js"></script>
 
 </html>
