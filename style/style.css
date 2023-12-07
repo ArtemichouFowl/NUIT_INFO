@@ -1,3 +1,27 @@
+#score_tab {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#score_number {
+    font-size: 18px;
+}
+
+#tree_tab {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#tree_img img {
+    max-width: 100%;
+    height: auto;
+}
+
+button#upgrade_click {
+    margin-top: 20px;
+}
+
 #popup {
     display: none;
 }
