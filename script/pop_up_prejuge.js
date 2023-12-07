@@ -1,4 +1,4 @@
-let upgrade_click = document.getElementById('upgrade_click')
+let upgrade_click = document.getElementById('upgrade_button')
 
 
 upgrade_click.addEventListener('click', function(e) {
