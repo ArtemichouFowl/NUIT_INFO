@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', startFallingLeaves);
 //click sur le tree -> augmente le score
 treeImage.addEventListener("click", function () {
     increaseScore();
+    playAudio();
 });
 
 
