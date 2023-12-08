@@ -36,7 +36,8 @@ let fruitJSON = [
         "addValue" : 1,
         "autoValue" : 1,
         "unlockState" : 0,
-        "price" : 10
+        "price" : 10,
+        "url" : "style/img/cerise.svg"
     },
     {
         "name" : "Fraise",
@@ -44,7 +45,8 @@ let fruitJSON = [
         "addValue" : 1,
         "autoValue" : 1,
         "unlockState" : 1,
-        "price" : 10
+        "price" : 10,
+        "url" : "style/img/cerise.svg"
     },
     {
         "name" : "Raisin",
@@ -52,7 +54,8 @@ let fruitJSON = [
         "addValue" : 1,
         "autoValue" : 1,
         "unlockState" : 2,
-        "price" : 10
+        "price" : 10,
+        "url" : "style/img/cerise.svg"
     },
     {
         "name" : "Peche",
@@ -60,7 +63,8 @@ let fruitJSON = [
         "addValue" : 1,
         "autoValue" : 1,
         "unlockState" : 3,
-        "price" : 10
+        "price" : 10,
+        "url" : "style/img/cerise.svg"
     },
     {
         "name" : "Pomme",
@@ -68,7 +72,8 @@ let fruitJSON = [
         "addValue" : 1,
         "autoValue" : 1,
         "unlockState" : 4,
-        "price" : 10
+        "price" : 10,
+        "url" : "style/img/cerise.svg"
     },
     {
         "name" : "Pomme dorée",
@@ -76,7 +81,8 @@ let fruitJSON = [
         "addValue" : 1,
         "autoValue" : 1,
         "unlockState" : 5,
-        "price" : 10
+        "price" : 10,
+        "url" : "style/img/cerise.svg"
     }
 ]
 
@@ -210,11 +216,22 @@ function updateFruitList(){
         if(fruitJSON[i].unlockState <= treeState){
             let index = i
             let shopItem = create("div",shopContainer,null,"item-shop")
-            create("p",shopItem,fruitJSON[i].nb+" "+fruitJSON[i].name)
-            create("p",shopItem,"+"+fruitJSON[i].addValue+" /clic")
-            create("p",shopItem,"+"+fruitJSON[i].autoValue+" /sec")
 
-            let button = create("button",shopItem,"Acheter : "+fruitJSON[i].price)
+            
+            let info_item = create("div",shopItem,null,"info_item",null)
+
+            let text_item = create("div",info_item,null,"item_text",null)
+            create("p",text_item,fruitJSON[i].nb+" "+fruitJSON[i].name)
+            create("p",text_item,"+"+fruitJSON[i].addValue+" /clic")
+            create("p",text_item,"+"+fruitJSON[i].autoValue+" /sec")
+
+            let img_item = create("div",info_item,null,"item_img",null)
+            let img = create("img",img_item,null,"fruit_img",null)
+            img.src = fruitJSON[i].url
+
+            let button_item = create("div",shopItem,null,"item_button",null)
+
+            let button = create("button",button_item,"Acheter : "+fruitJSON[i].price)
             button.addEventListener("click", function(){
                 buyFruit(index)
             })

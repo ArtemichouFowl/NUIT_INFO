@@ -213,10 +213,37 @@ header {
     color: white;
 }
 
+.info_item{
+
+    display: flex;
+
+}
+
+.info_item > div:nth-child(2){
+
+    order: -1;
+}
+
 .item-shop {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
     color: black;
     margin: 5px;
 }
+
+.item_button {
+
+    display: flex;
+
+}
+.item_img {
+    width : 20%;
+    height : 20%;
+
+}
+
 
 
 /* Styles pour le bouton de contrôle du son */
@@ -313,8 +340,6 @@ header {
         transform: scaleY(1) scaleX(1);
     }
 }
-
-
 
 
 
