@@ -12,13 +12,15 @@ function create(tagName, container, text = null, classs = null, id = null) {
 }
 
 let score = 0 // score de feuille
-let treeState = 0 // etat de l'arbre
+let treeState = 5 // etat de l'arbre
 let finalState = 5 // dernier etat
 
 let addValue = 1 // ajout onClick de feuille
-let autoValue = 1 // ajout auto de feuille
+let autoValue = 0 // ajout auto de feuille
 
-let upgradePrices = [10,500,5000,50000,500000,5000000] // valeurs pour améliorer l'arbre
+let countGapple = 0 // easter egg, 3 click -> jeu de rythme 
+
+let upgradePrices = [100,500,5000,50000,500000,5000000] // valeurs pour améliorer l'arbre
 
 let treeImages = ["arbre1.svg","arbre2.svg","arbre3.svg","arbre4.svg","arbre5.svg","arbre6.svg"]
 
@@ -36,53 +38,53 @@ let fruitJSON = [
         "addValue" : 1,
         "autoValue" : 1,
         "unlockState" : 0,
-        "price" : 10,
-        "url" : "style/img/cerise.png"
+        "url" : "style/img/cerise.png",
+        "price" : 25
     },
     {
         "name" : "Fraise",
         "nb" : 0,
-        "addValue" : 1,
-        "autoValue" : 1,
+        "addValue" : 7,
+        "autoValue" : 7,
         "unlockState" : 1,
-        "price" : 10,
-        "url" : "style/img/fraise.png"
+        "url" : "style/img/fraise.png",
+        "price" : 100
     },
     {
         "name" : "Raisin",
         "nb" : 0,
-        "addValue" : 1,
-        "autoValue" : 1,
+        "addValue" : 20,
+        "autoValue" : 20,
         "unlockState" : 2,
-        "price" : 10,
-        "url" : "style/img/raisin.png"
+        "url" : "style/img/raisin.png",
+        "price" : 150
     },
     {
         "name" : "Peche",
         "nb" : 0,
-        "addValue" : 1,
-        "autoValue" : 1,
+        "addValue" : 50,
+        "autoValue" : 50,
         "unlockState" : 3,
-        "price" : 10,
-        "url" : "style/img/pêche.png"
+        "url" : "style/img/pêche.png",
+        "price" : 300
     },
     {
         "name" : "Pomme",
         "nb" : 0,
-        "addValue" : 1,
-        "autoValue" : 1,
+        "addValue" : 150,
+        "autoValue" : 150,
         "unlockState" : 4,
-        "price" : 10,
-        "url" : "style/img/pomme.png"
+        "url" : "style/img/pomme.png",
+        "price" : 500
     },
     {
         "name" : "Gapple",
         "nb" : 0,
-        "addValue" : 1,
-        "autoValue" : 1,
+        "addValue" : 400,
+        "autoValue" : 400,
         "unlockState" : 5,
-        "price" : 10,
-        "url" : "style/img/doree.png"
+        "url" : "style/img/doree.png",
+        "price" : 1000
     }
 ]
 
@@ -235,6 +237,16 @@ function updateFruitList(){
             button.addEventListener("click", function(){
                 buyFruit(index)
             })
+
+            // easter egg gapple
+            if(fruitJSON[i].name=="Gapple"){
+                img_item.addEventListener("click",function(){
+                    countGapple++
+                    if(countGapple>=3){
+                        window.location.href = 'rythm.html'
+                    }
+                })
+            }
         }
     }
 }
