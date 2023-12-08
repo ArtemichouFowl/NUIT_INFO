@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <audio id="myMusic" src="C418%20-%20Sweden%20(Caution%20&%20Crisis%20Remix).mp3"></audio>
     <style>
         body {
             margin: 0;
@@ -23,15 +24,6 @@
             overflow: hidden;
             display: flex;
             z-index: 1;
-        }
-
-        .score {
-            position: absolute;
-            top: 20%;
-            left: 7%;
-            color: white;
-            font-size: 50px;
-            font-family: 'Press Start 2P', cursive;
         }
 
         .section {
@@ -106,7 +98,7 @@
 </head>
 
 <body>
-    <div class="score" id="score">Score: 0</div>
+    <button id="startButton">Démarrer le jeu</button>
     <div class="carré" id="game">
         <div class="section" id="section1">
             <img src="h.png" alt="">
