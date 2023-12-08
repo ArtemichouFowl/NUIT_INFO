@@ -48,19 +48,21 @@ function accepterAide() {
 
 function refuserAide() {
     const escargot = document.getElementById('escargot');
-    console.log(escargot.getBoundingClientRect().top);
     const texteBulle = "Très bien alors répond aux conséquences de tes actes.";
     bulleDialogue.querySelector('p').textContent = texteBulle;
     ouiButton.style.display = 'none';
     nonButton.style.display = 'none';
 
+
     playDinosaure();
+
     setTimeout(() => {
         bulleDialogue.style.display = 'none';
         escargot.src = 'style/img/dinosaur.png';
+        retablirTailleNormaleEscargot();
         moveSound();
 
-    }, 3000);
+    }, 2000);
 
 
 }
@@ -77,9 +79,26 @@ function ajouterFleur(top, left) {
 function gestionnaireToucheDroite(event) {
     if (event.key === 'ArrowRight') {
         const rect = escargot.getBoundingClientRect();
+        const buttonSound = document.getElementById('soundControl');
+        const goalPosition = buttonSound.getBoundingClientRect();
+
         bulleDialogue.style.display = 'none';
         escargot.style.left = rect.left + 10 + 'px';
+        console.log(rect.left)
+        //Vérifier si l'escargot a atteint la bouton volume
+        if (rect.left >= goalPosition.left - 50) {
+            document.removeEventListener('keydown', gestionnaireToucheDroite);
+            bulleDialogue.style.top = rect.top - bulleDialogue.offsetHeight - 120 + 'px';
+            bulleDialogue.style.left = rect.left + 'px';
+            const texteBulle = "Merci beaucoup pour ton aide !";
+            bulleDialogue.querySelector('p').textContent = texteBulle;
+            bulleDialogue.style.display = 'block';
+            setTimeout(() => {
+                bulleDialogue.style.display = 'none';
+                escargot.style.display = 'none';
+            }, 2000);
 
+        }
 
         // Laisser une trace (bave) derrière l'escargot
         const nouvelleBave = document.createElement('div');
@@ -102,28 +121,38 @@ function moveSound() {
     const buttonSound = document.getElementById('soundControl');
     const initialPosition = buttonSound.getBoundingClientRect();
     const escargot = document.getElementById('escargot');
-    const escargotRect = escargot.getBoundingClientRect();
-    const escargotTop = escargotRect.top;
 
-    console.log('escargot x' + escargotRect.left)
+
     const intervalId = setInterval(() => {
+        const escargotRect = escargot.getBoundingClientRect();
         const rect = buttonSound.getBoundingClientRect();
 
         buttonSound.style.left = rect.left - 10 + 'px';
-        console.log('button x' + escargotRect.left)
+
+        // Vérifier si l'escargot et le bouton se touchent
+        if (
+            rect.right >= escargotRect.left &&
+            rect.left <= escargotRect.right &&
+            rect.bottom >= escargotRect.top &&
+            rect.top <= escargotRect.bottom
+        ) {
+            clearInterval(intervalId);
+            escargot.src = 'style/img/snail.gif';
+            buttonSound.style.left = initialPosition.left + 'px';
+            reinitialiserEtatInitial();
+        }
+
         if (rect.left < -60 || rect.right > window.innerWidth) {
             buttonSound.style.left = initialPosition.left + 'px';
-        }
-        else if (rect.left === escargotRect.left) {
-            alert("Vous avez perdu");
         }
 
     }, 10);
 }
 
+
 function playDinosaure() {
     const snail = document.getElementById('escargot');
-    const jumpHeight = 110;
+    const jumpHeight = 120;
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowUp' && !jumping) {
@@ -162,6 +191,22 @@ function playDinosaure() {
             }
         }, 10);
     }
+}
+
+
+
+function reinitialiserEtatInitial() {
+    const texteBulle = "Et toi, veux-tu bien m'aider à rejoindre le bouton volume ?";
+    bulleDialogue.querySelector('p').textContent = texteBulle;
+    bulleDialogue.style.display = 'none';
+    retablirTailleNormaleEscargot();
+
+    jumping = false;
+
+    const ouiButton = document.getElementById('ouiButton');
+    const nonButton = document.getElementById('nonButton');
+    ouiButton.style.display = 'inline-block';
+    nonButton.style.display = 'inline-block';
 }
 
 
