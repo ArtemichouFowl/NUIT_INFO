@@ -10,7 +10,6 @@ function handleUpgradeButton() {
 
 }
 
-
 function createQuestionModal() {
     // Création du div modal
     var modal = document.createElement("div");
