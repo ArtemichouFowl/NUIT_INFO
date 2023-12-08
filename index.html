@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <audio id="myMusic" src="C418%20-%20Sweden%20(Caution%20&%20Crisis%20Remix).mp3"></audio>
     <style>
         body {
             margin: 0;
@@ -11,61 +12,152 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: black;
         }
 
         .carré {
             position: relative;
-            width: 40%;
-            /* Ajustez la taille du carré selon vos besoins */
-            height: 90%;
-            /* Ajustez la taille du carré selon vos besoins */
-            background-color: #3498db;
-            /* Couleur du fond du carré */
+            width: 500px;
+            height: 100%;
             text-align: center;
             line-height: 200px;
-            /* Utilisé pour centrer le texte verticalement */
             color: #fff;
-            /* Couleur du texte à l'intérieur du carré */
             overflow: hidden;
             display: flex;
+            z-index: 1;
         }
 
         .section {
             flex: 1;
             position: relative;
+            display: flex;
         }
 
         .golden {
             width: 100%;
             height: 100px;
-            background-color: #f1c40f;
             position: absolute;
             bottom: 0;
         }
 
-        .rectangle {
-            height: 50px;
+        button {
             position: absolute;
-            background-color: #e74c3c;
-            /* Couleur initiale du rectangle */
+            z-index: 1000;
+            padding: 0.1em 0.25em;
+            width: 13em;
+            height: 4.2em;
+            background-color: #212121;
+            border: 0.08em solid #fff;
+            border-radius: 0.3em;
+            font-size: 12px;
+        }
+
+        button span {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 0.4em;
+            width: 8.25em;
+            height: 2.5em;
+            background-color: #212121;
+            border-radius: 0.2em;
+            font-size: 1.5em;
+            color: #fff;
+            border: 0.08em solid #fff;
+            box-shadow: 0 0.4em 0.1em 0.019em #fff;
+        }
+
+        button span:hover {
+            transition: all 0.5s;
+            transform: translate(0, 0.4em);
+            box-shadow: 0 0 0 0 #fff;
+        }
+
+        button span:not(hover) {
+            transition: all 1s;
+        }
+
+
+
+        .rectangle {
+            position: absolute;
             transition: background-color 0.5s ease;
-            /* Ajout d'une transition pour un changement en douceur */
+            background-image: url("apple.png");
+            background-repeat: no-repeat;
+            height: 100px;
+            background-size: 50% auto;
+            background-position: center top;
         }
 
         .rectangle.in-golden {
-            background-color: #2ecc71;
-            /* Nouvelle couleur pour le rectangle dans la zone dorée */
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            transform: translateX(-50%) translateY(-50%);
+            background-size: contain;
+            /* Modifier ici */
+            transition: 1s opacity;
+        }
+
+
+        img {
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10%;
         }
     </style>
+    <video loop autoplay muted>
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
 </head>
 
 <body>
+    <button id="startButton">
+        <span> Démarrer le jeu ! </span>
+    </button>
     <div class="carré" id="game">
-        <div class="section" id="section1"></div>
-        <div class="section" id="section2"></div>
-        <div class="section" id="section3"></div>
-        <div class="golden" id="key"></div>
+        <div class="section" id="section1">
+            <img src="f.png" alt="" style="display:block" id="f">
+            <img src="fClic.png" alt="" style="display:none" id="fClic">
+        </div>
+        <div class="section" id="section2">
+            <img src="g.png" alt="" style="display:block" id="g">
+            <img src="gClic.png" alt="" style="display:none" id="gClic">
+        </div>
+        <div class="section" id="section3">
+            <img src="h.png" alt="" style="display:block" id="h">
+            <img src="hClic.png" alt="" style="display:none" id="hClic">
+        </div>
+        <div class="golden" id="key">
+            <div class="perdu" id="perdu"></div>
+        </div>
+        <div class="popup" id="popup">Vous avez perdu !</div>
     </div>
 
     <script src="main.js"></script>
