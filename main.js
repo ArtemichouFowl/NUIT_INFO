@@ -4,11 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelectorAll('.section');
     const popupElement = document.getElementById('popup');
     const music = document.getElementById('myMusic');
-    let musicData =
-        '0001010101010101000101010001010100010101000101010001010101010101000101010101010100010101010101010001010101010101000101010101010100010001000100010001000110010001000100010001000100010001000100010001010101010101000101010101010100010101010101010001010101010101000101010101010100010101010101010001010101010101000101010101010100010001000100010001000100010001000100010001000100010001000100010001010101010101000101010101010100010101010101010001010101010101000100000000000'.split('')
-    let musicBass = ''.split('')
+    let musicData = '0001010101010101000101010001010100010101000101010001010101010101000101010101010100010101010101010001010101010101000101010101010100010001000100010001000110010001000100010001000100010001000100010001010101010101000101010101010100010101010101010001010101010101000101010101010100010101010101010001010101010101000101010101010100010001000100010001000100010001000100010001000100010001000100010001010101010101000101010101010100010101010101010001010101010101000100000000000'.split('');
+    let redInterval; // Variable pour stocker l'intervalle de création des rectangles rouges
+
+    // Générer une nouvelle liste de 1 et de 0, commençant par 26 zéros
+    const newListStr = '0000000000000000000000000001010001111110110011111110011110110010011000010101110111110000001001100111101001111011011111110000001011101000101011000100100011100110111000111001001100100101000111010000011101100111001000010010000100001110011000001001100101001101010111101111010100001110001111111011111111111001101011101011111101100011101111000011001101011011000101110011111000111011010011000000110011010101100001101001010101010101101';
 
     let dataIndex = 0;
+    let redDataIndex = 0;
     let bpm = 88;
     let beatDuration = 60000 / bpm;
     let musicStarted = false;
@@ -47,12 +50,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function createRectangle() {
         if (dataIndex === 50) { // Exemple : changer le BPM après 50 rectangles
-            bpm = 88; // Nouveau BPM
+            bpm = 176; // Nouveau BPM
             beatDuration = 60000 / bpm;
-            music.playbackRate = 1; // Augmenter la vitesse de lecture de la musique
+            music.playbackRate = 2; // Augmenter la vitesse de lecture de la musique
         }
 
-        if (musicData[dataIndex] === '1') {
+        // Créer un rectangle normal ou rouge selon les données
+        let rectangleType = musicData[dataIndex] === '1' ? 'rectangle' : (newListStr[redDataIndex] === '1' ? 'rectangle' : null);
+
+        if (rectangleType) {
             const rectangle = document.createElement('div');
             rectangle.classList.add('rectangle');
             rectangle.style.width = sections[0].clientWidth + 'px';
@@ -64,12 +70,12 @@ document.addEventListener('DOMContentLoaded', function () {
             game.appendChild(rectangle);
 
             let animationRunning = true;
-
+            const animationDuration = beatDuration * 4;
             const animation = rectangle.animate([
                 { top: '-50px' },
                 { top: '100%' }
             ], {
-                duration: 3000,
+                duration: animationDuration,
                 easing: 'linear'
             });
 
@@ -87,14 +93,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (keyPressedMap['f'] && randomSectionIndex === 0) {
                         rectangle.classList.add('in-golden');
+                        document.getElementById('f').style.display = 'none';
+                        document.getElementById('fClic').style.display = 'block';
+                        setTimeout(function () {
+                            document.getElementById('fClic').style.display = 'none';
+                            document.getElementById('f').style.display = 'block';
+                        }, 200);
                     } else if (keyPressedMap['g'] && randomSectionIndex === 1) {
                         rectangle.classList.add('in-golden');
+                        document.getElementById('g').style.display = 'none';
+                        document.getElementById('gClic').style.display = 'block';
+                        setTimeout(function () {
+                            document.getElementById('gClic').style.display = 'none';
+                            document.getElementById('g').style.display = 'block';
+                        }, 200);
                     } else if (keyPressedMap['h'] && randomSectionIndex === 2) {
                         rectangle.classList.add('in-golden');
+                        document.getElementById('h').style.display = 'none';
+                        document.getElementById('hClic').style.display = 'block';
+                        setTimeout(function () {
+                            document.getElementById('hClic').style.display = 'none';
+                            document.getElementById('h').style.display = 'block';
+                        }, 200);
                     }
                 } else {
                     rectangle.classList.remove('in-golden');
                     inGoldenZone = false;
+                }
+
+                // Log the opacity of the rectangle
+                const computedStyle = window.getComputedStyle(rectangle);
+                const opacity = parseFloat(computedStyle.getPropertyValue('opacity'));
+                console.log('Rectangle opacity:', opacity, 'Rectangle bottom:', rect.bottom);
+
+                // Check if the rectangle is out of the page and its opacity is not 0
+                if (rect.bottom == 0 && parseFloat(rectangle.style.opacity) !== 0) {
+                    console.log('Rectangle out of page with opacity not 0');
                 }
 
                 if (animationRunning) {
