@@ -20,7 +20,7 @@ let autoValue = 1 // ajout auto de feuille
 
 let upgradePrices = [10,500,5000,50000,500000,5000000] // valeurs pour améliorer l'arbre
 
-let treeImages = ["arbre1.svg","arbre2.svg","arbre3.svg","arbre4.svg","arbre5.svg"]
+let treeImages = ["arbre1.svg","arbre2.svg","arbre3.svg","arbre4.svg","arbre5.svg","arbre6.svg"]
 
 let scoreTag = document.getElementById("score_number") // text score
 let upgradeTag = document.getElementById("upgrade_button") // text faire pousser
@@ -37,7 +37,7 @@ let fruitJSON = [
         "autoValue" : 1,
         "unlockState" : 0,
         "price" : 10,
-        "url" : "style/img/cerise.svg"
+        "url" : "style/img/cerise.png"
     },
     {
         "name" : "Fraise",
@@ -46,7 +46,7 @@ let fruitJSON = [
         "autoValue" : 1,
         "unlockState" : 1,
         "price" : 10,
-        "url" : "style/img/cerise.svg"
+        "url" : "style/img/fraise.png"
     },
     {
         "name" : "Raisin",
@@ -55,7 +55,7 @@ let fruitJSON = [
         "autoValue" : 1,
         "unlockState" : 2,
         "price" : 10,
-        "url" : "style/img/cerise.svg"
+        "url" : "style/img/raisin.png"
     },
     {
         "name" : "Peche",
@@ -64,7 +64,7 @@ let fruitJSON = [
         "autoValue" : 1,
         "unlockState" : 3,
         "price" : 10,
-        "url" : "style/img/cerise.svg"
+        "url" : "style/img/pêche.png"
     },
     {
         "name" : "Pomme",
@@ -73,16 +73,16 @@ let fruitJSON = [
         "autoValue" : 1,
         "unlockState" : 4,
         "price" : 10,
-        "url" : "style/img/cerise.svg"
+        "url" : "style/img/pomme.png"
     },
     {
-        "name" : "Pomme dorée",
+        "name" : "Gapple",
         "nb" : 0,
         "addValue" : 1,
         "autoValue" : 1,
         "unlockState" : 5,
         "price" : 10,
-        "url" : "style/img/cerise.svg"
+        "url" : "style/img/doree.png"
     }
 ]
 

@@ -239,12 +239,31 @@ header {
 
 }
 
-.item_img {
-    width: 20%;
-    height: 20%;
+.item_button > button {
+
+    width: -webkit-fill-available;
 
 }
 
+.item_img {
+    width: 40px;
+    height: 40px;
+    padding: 5%;
+    padding-left: 7%;
+    padding-top: 15%;
+
+}
+
+.item_text{
+
+    width : 100px;
+}
+
+.fruit_img {
+
+    width: 40px;
+    height: 40px;
+}
 
 
 /* Styles pour le bouton de contrôle du son */
