@@ -160,7 +160,7 @@ function handleTrueButton() {
 
     }else {
 
-        createReponseModal("Tu as perdu !",questionJSONArr[treeState].reponse)
+        createReponseModal("Tu as perdu !","Réessaye !")
         wrongAnswer()
 
     }
@@ -179,7 +179,7 @@ function handleFalseButton() {
 
     }else {
 
-        createReponseModal("Tu as perdu !",questionJSONArr[treeState].reponse)
+        createReponseModal("Tu as perdu !","Réessaye !")
         wrongAnswer()
 
     }

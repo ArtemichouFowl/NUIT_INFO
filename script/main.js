@@ -12,7 +12,7 @@ function create(tagName, container, text = null, classs = null, id = null) {
 }
 
 let score = 0 // score de feuille
-let treeState = 5 // etat de l'arbre
+let treeState = 0 // etat de l'arbre
 let finalState = 5 // dernier etat
 
 let addValue = 1 // ajout onClick de feuille
