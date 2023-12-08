@@ -86,18 +86,61 @@ header {
     position: fixed;
     top: 50%;
     left: 50%;
-    padding: 25px;
-    background: white;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-width: 400px;
+    /* Ajustez la largeur maximale selon vos besoins */
 }
 
-.modal-back {
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Style du titre */
+.modal-container h1 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Style du texte de la question */
+#question_modal {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Style des boutons */
+#button_true_answer,
+#button_false_answer {
+    display: block;
     width: 100%;
-    height: 100%;
-    background-color: transparent;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4caf50;
+    /* Couleur du bouton Vrai */
+    color: #fff;
+}
+
+#button_false_answer {
+    background-color: #f44336;
+    /* Couleur du bouton Faux */
+}
+
+/* Style du lien de fermeture */
+#modal-close {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #666;
+}
+
+/* Style du lien de fermeture au survol */
+#modal-close:hover {
+    color: #000;
 }
 
 
@@ -126,6 +169,79 @@ header {
     width: 100%;
     text-align: center;
 }
+
+/* Escargot css */
+#escargot {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 50px;
+    height: auto;
+}
+
+#bulleDialogue {
+    position: fixed;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+    text-align: center;
+    max-width: 200px;
+}
+
+
+#bulleDialogue button#ouiButton {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+#bulleDialogue button#nonButton {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+#bulleDialogue button:hover {
+    opacity: 0.8;
+}
+
+
+.bave {
+    position: absolute;
+    background-color: #92c3a2;
+    width: 8px;
+    height: 4px;
+    border-radius: 50%;
+    animation: baveAnimation 3s linear;
+    opacity: 0.7;
+}
+
+
+.fleur {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* Animation pour la bave */
+@keyframes baveAnimation {
+    0% {
+        transform: scaleY(1) scaleX(1);
+    }
+
+    50% {
+        transform: scaleY(1.5) scaleX(0.8);
+    }
+
+    100% {
+        transform: scaleY(1) scaleX(1);
+    }
+}
+
+
+
+
 
 @media screen and (max-width: 600px) {
     #tree_img img {

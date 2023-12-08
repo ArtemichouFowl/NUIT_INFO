@@ -4,7 +4,7 @@ let treeState = 0 // etat de l'arbre
 let finalState = 5 // dernier etat
 
 let addValue = [1, 10, 100, 1000, 10000, 100000] // valeurs ajoutée à l'arbre a chaque clic
-let upgradePrices = [50, 500, 5000, 50000, 500000, 5000000] // valeurs pour améliorer l'arbre
+let upgradePrices = [10, 500, 5000, 50000, 500000, 5000000] // valeurs pour améliorer l'arbre
 
 let scoreTag = document.getElementById("score_number") // text score
 let upgradeTag = document.getElementById("upgrade_button") // text faire pousser
