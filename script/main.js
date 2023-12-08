@@ -20,7 +20,7 @@ let autoValue = 1 // ajout auto de feuille
 
 let upgradePrices = [10,500,5000,50000,500000,5000000] // valeurs pour améliorer l'arbre
 
-let treeImages = ["bourgeon.svg","arbre1.svg","arbre2.svg","arbre3.svg","arbre.png"]
+let treeImages = ["arbre1.svg","arbre2.svg","arbre3.svg","arbre4.svg","arbre5.svg"]
 
 let scoreTag = document.getElementById("score_number") // text score
 let upgradeTag = document.getElementById("upgrade_button") // text faire pousser
