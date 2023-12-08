@@ -121,16 +121,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     inGoldenZone = false;
                 }
 
-                // Log the opacity of the rectangle
-                const computedStyle = window.getComputedStyle(rectangle);
-                const opacity = parseFloat(computedStyle.getPropertyValue('opacity'));
-                console.log('Rectangle opacity:', opacity, 'Rectangle bottom:', rect.bottom);
-
-                // Check if the rectangle is out of the page and its opacity is not 0
-                if (rect.bottom == 0 && parseFloat(rectangle.style.opacity) !== 0) {
-                    console.log('Rectangle out of page with opacity not 0');
-                }
-
                 if (animationRunning) {
                     requestAnimationFrame(checkCollision);
                 }
