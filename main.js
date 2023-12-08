@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const startButton = document.getElementById('startButton');
     const game = document.getElementById('game');
     const golden = document.getElementById('key');
     const sections = document.querySelectorAll('.section');
