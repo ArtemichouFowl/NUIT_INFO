@@ -1,17 +1,17 @@
 {
     "1": {
-      "titre": "Les scientifiques sont tous d'accord",
+      "titre": "Les scientifiques sont tous d'accord sur la dangerosité du dérèglement climatique",
       "reponse": "Le GIEC (Groupe d’experts intergouvernemental sur l’évolution du climat), formé par les Nations Unies, étudie depuis une vingtaine d’années les différents travaux des scientifiques du monde entier. Tous les rapports de cet organisme indiquent la dangerosité du réchauffement climatique, provoqué par l’homme et les émissions de gaz à effet de serre.",
       "solution": true
     },
     "2": {
-      "titre": "Le changement climatique peut être résolu par les progrès scientifiques",
+      "titre": "Le dérèglement climatique peut être résolu par les progrès scientifiques",
       "reponse": "Les progrès technologiques pourront peut-être dans un futur lointain nous permettre de coloniser de nouvelles planètes, comme solution de sauvegarde de l’espèce humaine… Mais aucune découverte scientifique majeure n’a pu influer sur le climat.",
       "solution": false
     },
     "3": {
-      "titre": "Le réchauffement climatique est limité",
-      "reponse": "La dernière décennie a été considérée comme la plus chaude depuis le début des relevés de températures. Le réchauffement climatique risque de provoquer des records de chaleur à l’avenir et de provoquer une augmentation des réfugiés climatiques, face à la sécheresse et à la pénurie d’eau.",
+      "titre": "Les voitures électriques sont plus écologiques que les voitures thermiques",
+      "reponse": "Les voitures électriques sont généralement plus écologiques que les voitures thermiques, principalement parce qu'elles émettent moins de gaz à effet de serre lors de leur utilisation. Cependant, leur fabrication, en particulier celle des batteries, peut être plus polluante.",
       "solution": false
     },
     "4": {
