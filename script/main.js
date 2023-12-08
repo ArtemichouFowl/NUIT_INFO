@@ -243,7 +243,7 @@ function updateFruitList(){
                 img_item.addEventListener("click",function(){
                     countGapple++
                     if(countGapple>=3){
-                        window.location.href = 'rythm.html'
+                        window.location.href = 'rythm/rythm.html'
                     }
                 })
             }

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <audio id="myMusic" src="C418%20-%20Sweden%20(Caution%20&%20Crisis%20Remix).mp3"></audio>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .carré {
+            position: relative;
+            width: 500px;
+            height: 100%;
+            text-align: center;
+            line-height: 200px;
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            z-index: 1;
+        }
+
+        .section {
+            flex: 1;
+            position: relative;
+            display: flex;
+        }
+
+        .golden {
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        button {
+            position: absolute;
+            z-index: 1000;
+            padding: 0.1em 0.25em;
+            width: 13em;
+            height: 4.2em;
+            background-color: #212121;
+            border: 0.08em solid #fff;
+            border-radius: 0.3em;
+            font-size: 12px;
+        }
+
+        button span {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            bottom: 0.4em;
+            width: 8.25em;
+            height: 2.5em;
+            background-color: #212121;
+            border-radius: 0.2em;
+            font-size: 1.5em;
+            color: #fff;
+            border: 0.08em solid #fff;
+            box-shadow: 0 0.4em 0.1em 0.019em #fff;
+        }
+
+        button span:hover {
+            transition: all 0.5s;
+            transform: translate(0, 0.4em);
+            box-shadow: 0 0 0 0 #fff;
+        }
+
+        button span:not(hover) {
+            transition: all 1s;
+        }
+
+
+
+        .rectangle {
+            position: absolute;
+            transition: background-color 0.5s ease;
+            background-image: url("apple.png");
+            background-repeat: no-repeat;
+            height: 100px;
+            background-size: 50% auto;
+            background-position: center top;
+        }
+
+        .rectangle.in-golden {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .popup {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            transform: translateX(-50%) translateY(-50%);
+            background-size: contain;
+            /* Modifier ici */
+            transition: 1s opacity;
+        }
+
+
+        img {
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10%;
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 10px;
+            width: 40px;
+            /* Largeur de la barre d'avancement */
+            height: 0;
+            /* Hauteur initiale de la barre d'avancement */
+            background: linear-gradient(to top, #4CAF50, #FFD700);
+            /* Dégradé de couleur de la barre d'avancement */
+            border-radius: 10px;
+            /* Bordure arrondie */
+            transition: height 0.5s;
+            /* Ajout d'une transition pour un effet plus fluide */
+            z-index: 1000;
+        }
+
+        .dangerzone {
+            width: 100%;
+            height: 10px;
+            position: absolute;
+            bottom: 0px;
+        }
+    </style>
+    <video loop autoplay muted id="background">
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
+</head>
+
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <button id="startButton">
+        <span> Démarrer le jeu ! </span>
+    </button>
+    <div class="carré" id="game">
+        <div class="section" id="section1">
+            <img src="f.png" alt="" style="display:block" id="f">
+            <img src="fClic.png" alt="" style="display:none" id="fClic">
+            <img src="fMiss.png" alt="" style="display:none" id="fMiss">
+        </div>
+        <div class="section" id="section2">
+            <img src="g.png" alt="" style="display:block" id="g">
+            <img src="gClic.png" alt="" style="display:none" id="gClic">
+            <img src="gMiss.png" alt="" style="display:none" id="gMiss">
+        </div>
+        <div class="section" id="section3">
+            <img src="h.png" alt="" style="display:block" id="h">
+            <img src="hClic.png" alt="" style="display:none" id="hClic">
+            <img src="hMiss.png" alt="" style="display:none" id="hMiss">
+        </div>
+        <div class="golden" id="key">
+            <div class="perdu" id="perdu"></div>
+        </div>
+        <div class="popup" id="popup">Vous avez perdu !</div>
+        <div class="dangerzone"></div> <!-- Nouvelle div ajoutée ici -->
+
+    </div>
+
+    <script src="rythm.js"></script>
+</body>
+
+</html>
