@@ -1,6 +1,7 @@
 const escargot = document.getElementById('escargot');
 const bulleDialogue = document.getElementById('bulleDialogue');
 const bave = document.getElementById('bave');
+let jumping = false;
 
 escargot.addEventListener('click', () => {
     if (bulleDialogue.style.display === 'block') {
@@ -47,15 +48,18 @@ function accepterAide() {
 
 function refuserAide() {
     const escargot = document.getElementById('escargot');
+    console.log(escargot.getBoundingClientRect().top);
     const texteBulle = "Très bien alors répond aux conséquences de tes actes.";
     bulleDialogue.querySelector('p').textContent = texteBulle;
     ouiButton.style.display = 'none';
     nonButton.style.display = 'none';
 
+    playDinosaure();
     setTimeout(() => {
         bulleDialogue.style.display = 'none';
         escargot.src = 'style/img/dinosaur.png';
-        playDinosaur();
+        moveSound();
+
     }, 3000);
 
 
@@ -94,11 +98,71 @@ function gestionnaireToucheDroite(event) {
 
 
 
-function playDinosaur() {
+function moveSound() {
     const buttonSound = document.getElementById('soundControl');
+    const initialPosition = buttonSound.getBoundingClientRect();
+    const escargot = document.getElementById('escargot');
+    const escargotRect = escargot.getBoundingClientRect();
+    const escargotTop = escargotRect.top;
+
+    console.log('escargot x' + escargotRect.left)
     const intervalId = setInterval(() => {
         const rect = buttonSound.getBoundingClientRect();
-        buttonSound.style.left = rect.left - 10 + 'px';
-    }, 10);
 
+        buttonSound.style.left = rect.left - 10 + 'px';
+        console.log('button x' + escargotRect.left)
+        if (rect.left < -60 || rect.right > window.innerWidth) {
+            buttonSound.style.left = initialPosition.left + 'px';
+        }
+        else if (rect.left === escargotRect.left) {
+            alert("Vous avez perdu");
+        }
+
+    }, 10);
 }
+
+function playDinosaure() {
+    const snail = document.getElementById('escargot');
+    const jumpHeight = 110;
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowUp' && !jumping) {
+            jumping = true;
+            jump();
+        }
+    });
+
+    function jump() {
+        let jumpDistance = 0;
+
+        const jumpInterval = setInterval(() => {
+            snail.style.bottom = jumpDistance + 'px';
+
+            jumpDistance += 5;
+
+            if (jumpDistance >= jumpHeight) {
+                clearInterval(jumpInterval);
+                fall();
+            }
+        }, 10);
+    }
+
+    function fall() {
+        const fallHeight = 0; // Hauteur à laquelle le dinosaure doit redescendre
+        let fallDistance = jumpHeight;
+
+        const fallInterval = setInterval(() => {
+            snail.style.bottom = fallDistance + 'px';
+
+            fallDistance -= 2;
+
+            if (fallDistance <= fallHeight) {
+                clearInterval(fallInterval);
+                jumping = false;
+            }
+        }, 10);
+    }
+}
+
+
+

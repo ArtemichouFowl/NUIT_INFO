@@ -94,7 +94,7 @@ header {
     padding: 5px;
 }
 
-.values-container > div {
+.values-container>div {
     border-radius: 5px;
     background-color: #507B5A;
     color: white;
@@ -213,13 +213,13 @@ header {
     color: white;
 }
 
-.info_item{
+.info_item {
 
     display: flex;
 
 }
 
-.info_item > div:nth-child(2){
+.info_item>div:nth-child(2) {
 
     order: -1;
 }
@@ -238,9 +238,10 @@ header {
     display: flex;
 
 }
+
 .item_img {
-    width : 20%;
-    height : 20%;
+    width: 20%;
+    height: 20%;
 
 }
 
