@@ -40,6 +40,7 @@ button {
     border-radius: 5px;
     border: none;
     padding: 5px;
+    cursor: pointer;
 }
 
 /* Header Styling */
@@ -234,12 +235,12 @@ header {
 }
 
 .item_button {
-
+    cursor: pointer;
     display: flex;
 
 }
 
-.item_button > button {
+.item_button>button {
 
     width: -webkit-fill-available;
 
@@ -254,9 +255,9 @@ header {
 
 }
 
-.item_text{
+.item_text {
 
-    width : 100px;
+    width: 100px;
 }
 
 .fruit_img {
